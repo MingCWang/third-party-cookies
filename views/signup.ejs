@@ -1,0 +1,14 @@
+<div>
+    <h2>Signup</h2>
+    <% if (signupError) { %>
+        <h3><%= signupError %></h3>
+    <% } %>
+    <form method="post" action="/signup">
+        username: <input type="text" autocomplete="username" name="username"><br>
+        password
+            <input type="password" autocomplete="passphrase" name="passphrase"><br>
+        confirm password:
+            <input type="password" name="passphrase2"><br>
+        <input type="submit">
+    </form>
+</div>
