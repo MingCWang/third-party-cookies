@@ -3,7 +3,9 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Third Party Cookies Demonstartion' });
+  cookies = JSON.stringify(req.cookies);
+  session = JSON.stringify(req.session);
+  res.render('index', { title: 'Third Party Cookies Demonstartion', session: session, cookies: cookies });
 });
 
 
