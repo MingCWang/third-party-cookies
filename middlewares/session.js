@@ -21,5 +21,5 @@ module.exports = session({
   },
   store: store,          
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
 })

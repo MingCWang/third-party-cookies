@@ -2,10 +2,13 @@
 
 <body>
   <h1><%= title %></h1>
-  <p>Developer: Ming-Shih Wang</p>
+  <!-- <p>Developer: Ming-Shih Wang</p> -->
   <% if (loggedIn) { %>
-    <h3>Session: <%= session %></h3>
-    <h3>Cookie: <%= cookies %></h3>
+    <h2> Things generated when user is authenticated </h2>
+    <h3>Session Object: not sent to the user</h3>
+    <pre><%= session %></pre>
+    <h3>Cookie Object: sent to the user</h3> 
+    <pre><%= cookies %></pre>
   <% } else { %>
    
   <% } %>

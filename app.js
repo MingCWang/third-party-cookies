@@ -48,12 +48,16 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(userVariableSetup)
+
 app.use(layouts)
+
 
 app.use(usersAuthRouter);
 app.use('/', indexRouter);
-
-
+app.get('/test', isLoggedIn, (req,res, next) => {
+  console.log('authenticated');
+  next()
+})
 
 /* **************************************** */
 /*  error handling */

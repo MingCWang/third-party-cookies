@@ -19,8 +19,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const User = require('../models/User')
-const isLoggedIn = require('../middlewares/check-login');
-
+const moment = require('moment');
 
 router.get('/login', (req,res) => {
   res.locals.loginError = null
@@ -32,12 +31,21 @@ router.get('/signup', (req,res) => {
   res.render('signup')
 })
 
+const setSessionVariablesWhenAuthenticated = (req, res, username) => {
+  const expires = req.session.cookie.expires
+  req.session.username = username 
+  req.session.created_At = moment().format('MMMM Do YYYY, h:mm:ss a');
+  req.session.expires_At = moment(expires).format('MMMM Do YYYY, h:mm:ss a');
+}
+
+/* ************Loging in************* */               
 // this handles the login form data
 // it checks gets the username and passphrase from the form
 // then it looks up the user with that username (if any)
 // the user object stores a heavily encrypted version of the passphrase
 // if the passphrase from the form has the same encryption, then
 // the user has been authenticated
+/* ********************************** */
 router.post('/login',
   async (req,res,next) => {
     try {
@@ -50,13 +58,11 @@ router.post('/login',
         res.locals.loginError = null
         const isMatch = await bcrypt.compare(passphrase,user.passphrase);
         if (isMatch) {
-          req.session.username = username //req.body
-          req.session.user = user
+          setSessionVariablesWhenAuthenticated(req, res, username)
           res.redirect('/')
         } else {
           res.locals.loginError = 'incorrect username or passphrase '
           req.session.username = null
-          req.session.user = null
           res.render('login')
         }
       }
@@ -90,14 +96,16 @@ router.post('/signup',
         }else {
           // the username has not been taken so create a new user and store it in the database
           const user = new User(
-            {username:username,
-             passphrase:encrypted,
-            })
+            {
+              username:username,
+              passphrase:encrypted,
+            }
+          )
           
           await user.save()
+
           res.locals.signupError = null // clear the error message
-          req.session.username = user.username
-          req.session.user = user
+          setSessionVariablesWhenAuthenticated(req, res, username)
           res.redirect('/')
         }
       }

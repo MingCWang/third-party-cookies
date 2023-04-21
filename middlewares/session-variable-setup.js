@@ -13,13 +13,9 @@ function userVariableSetup(req,res,next){
     if (req.session.username) {
       res.locals.loggedIn = true
       res.locals.username = req.session.username
-      res.locals.user = req.session.user
-      req.user = req.session.user
     } else {
       res.locals.loggedIn = false
       res.locals.username = null
-      res.locals.user = null
-      req.user = null
     }
     next()
   }
