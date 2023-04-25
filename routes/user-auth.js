@@ -20,6 +20,7 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const User = require('../models/User')
 const moment = require('moment');
+const setTrackingInfoInCookie = require('../middlewares/tracking-cookies');
 
 router.get('/login', (req,res) => {
   res.locals.loginError = null
@@ -38,6 +39,7 @@ const setSessionVariablesWhenAuthenticated = (req, res, username) => {
   req.session.expires_At = moment(expires).format('MMMM Do YYYY, h:mm:ss a');
 }
 
+
 /* ************Loging in************* */               
 // this handles the login form data
 // it checks gets the username and passphrase from the form
@@ -49,21 +51,23 @@ const setSessionVariablesWhenAuthenticated = (req, res, username) => {
 router.post('/login',
   async (req,res,next) => {
     try {
-      const {username,passphrase} = req.body
-      const user = await User.findOne({username:username})
+      const {username,passphrase} = req.body;
+      const user = await User.findOne({username:username});
       if(!user){
-        res.locals.loginError = 'user does not exist'
-        res.render('login')
+        res.locals.loginError = 'user does not exist';
+        res.render('login');
       }else{
-        res.locals.loginError = null
+        res.locals.loginError = null;
         const isMatch = await bcrypt.compare(passphrase,user.passphrase);
         if (isMatch) {
-          setSessionVariablesWhenAuthenticated(req, res, username)
-          res.redirect('/')
+          setSessionVariablesWhenAuthenticated(req, res, username);
+          // waits for the tracking cookie to be set before redirecting
+          await setTrackingInfoInCookie(req, res);
+          res.redirect('/');
         } else {
-          res.locals.loginError = 'incorrect username or passphrase '
-          req.session.username = null
-          res.render('login')
+          res.locals.loginError = 'incorrect username or passphrase ';
+          req.session.username = null;
+          res.render('login');
         }
       }
      
@@ -101,11 +105,12 @@ router.post('/signup',
               passphrase:encrypted,
             }
           )
-          
           await user.save()
-
           res.locals.signupError = null // clear the error message
+
           setSessionVariablesWhenAuthenticated(req, res, username)
+          await setTrackingInfoInCookie(req, res);
+
           res.redirect('/')
         }
       }

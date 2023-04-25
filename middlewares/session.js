@@ -16,6 +16,7 @@ store.on('error', function(error) {
 
 module.exports = session({
   secret: 'This is a secret',
+  name: 'sessionID',
   cookie: {
     maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week                                        
   },

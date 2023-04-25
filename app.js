@@ -11,6 +11,7 @@ const layouts = require('express-ejs-layouts')
 const isLoggedIn = require('./middlewares/check-login')
 const userVariableSetup = require('./middlewares/session-variable-setup')
 const session = require('./middlewares/session')
+const setTrackingInfoInCookie = require('./middlewares/tracking-cookies')
 
 const app = express();
 
@@ -48,12 +49,24 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(userVariableSetup)
+// tracks use time on the site
+
+  // app.use((req, res, next) => {
+  //   if(req.session.tracked){
+  //     next()
+  //   }else{
+  //     console.log("start tracking")
+  //     setTrackingInfoInCookie(req, res, true)
+  //   }
+  // });
+
+
 
 app.use(layouts)
 
 
 app.use(usersAuthRouter);
-app.use('/', indexRouter);
+app.use('/',indexRouter);
 app.get('/test', isLoggedIn, (req,res, next) => {
   console.log('authenticated');
   next()
