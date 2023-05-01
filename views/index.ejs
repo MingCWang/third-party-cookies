@@ -1,5 +1,5 @@
-
-
+<!-- this script tag simulates how third party cookies are added to a website -->
+<script src="/javascripts/set-third-party-cookie.js"></script>
 <body>
   <h1><%= title %></h1>
   <!-- <p>Developer: Ming-Shih Wang</p> -->
@@ -9,6 +9,7 @@
     <pre><%= session %></pre>
     <h3>Cookie Object: sent to the user</h3> 
     <pre><%= cookies %></pre>
+  
   <% } else { %>
    <p>No cookies sent to you yet!</p>
   <% } %>
@@ -16,3 +17,6 @@
 
 </body>
 
+<!-- thirdPartyCookie -->
+<!--   <h3>Third Party Cookie: sent from port 4000</h3>
+    <pre><%=  %></pre> -->
