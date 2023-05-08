@@ -10,7 +10,7 @@ fetch(apiUrl, {
 })
   .then(response => {
     if (response.ok) {
-      console.log('cookie received ');
+      console.log('cookie sent from third party website');
       console.log(response)
     } else {
       throw new Error('Something went wrong');

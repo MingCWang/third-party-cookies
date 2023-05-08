@@ -8,14 +8,14 @@
     <h3>Session Object: not sent to the user</h3>
     <pre><%= session %></pre>
     <h3>Cookie Object: sent to the user</h3> 
+
+    <!-- this for loop displays the cookies that are sent to the user -->
     <% for(let cookie in cookies){ %>
-      <p><%= cookie %>: <%= cookies[cookie] %></p>
+      <pre><%= cookie %>: <%= cookies[cookie] %></pre>
+      <form id="delete-cookie-form" action="/deleteCookie?cookieName=<%= cookie %>" method="POST">
+        <button type="submit">Delete cookie</button>
+      </form>
     <% } %>
-    <!-- <pre><%= cookies %></pre> -->
-  
-    <form id="delete-cookie-form" action="/deleteCookie?cookieName=trackingCookie" method="POST">
-      <button type="submit">Delete cookie</button>
-    </form>
 
 
   <% } else { %>
