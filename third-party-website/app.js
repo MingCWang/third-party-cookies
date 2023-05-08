@@ -6,7 +6,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
-app.listen(port, '0.0.0.0', () => {
+app.listen(port, '20.84.83.100', () => {
     console.log(`third party website listening on port ${port}`)
   })
 app.set('views', path.join(__dirname, 'views'));
