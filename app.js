@@ -12,7 +12,7 @@ const layouts = require('express-ejs-layouts')
 const isLoggedIn = require('./middlewares/check-login')
 const userVariableSetup = require('./middlewares/session-variable-setup')
 const session = require('./middlewares/session')
-const setTrackingInfoInCookie = require('./middlewares/tracking-cookies')
+// const setTrackingInfoInCookie = require('./middlewares/tracking-cookies')
 
 const app = express();
 const thirdPartyApp = express();
@@ -30,6 +30,7 @@ const usersAuthRouter = require('./routes/user-auth');
 
 const sendThirdPartyCookieRouter = require('./routes/third-party-index');
 
+const cookieManagerRouter = require('./routes/cookie-manager');
 /* **************************************** */
 /* Enable sessions and storing session data in the database */
 /* **************************************** */
@@ -62,10 +63,14 @@ app.use(userVariableSetup)
 
 app.use(layouts)
 
-
+app.use(cookieManagerRouter);
 app.use(usersAuthRouter);
 app.use('/',indexRouter);
-app.use(cors({credentials: true, origin: 'http://localhost:4000'}))
+app.use(cors({
+  credentials: true, 
+  origin: 'http://localhost:4000'
+}))
+
 app.get('/test', isLoggedIn, (req,res, next) => {
   console.log('authenticated');
   next()

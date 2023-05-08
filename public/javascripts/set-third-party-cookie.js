@@ -1,12 +1,12 @@
 console.log('sending third party cookie');
-const corsProxyUrl = 'https://cors-anywhere.herokuapp.com/';
 const apiUrl = 'http://localhost:4000/sendThirdPartyCookie';
 
-fetch(corsProxyUrl + apiUrl, {
+fetch(apiUrl, {
   method: 'GET',
   headers: {
     'Content-Type': 'application/json',
-  }
+  },
+  credentials: 'include',
 })
   .then(response => {
     if (response.ok) {
@@ -16,4 +16,4 @@ fetch(corsProxyUrl + apiUrl, {
       throw new Error('Something went wrong');
     }
   })
-  .catch(error => console.error(error));
+  .catch(error => console.error(error));  

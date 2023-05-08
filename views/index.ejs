@@ -8,14 +8,30 @@
     <h3>Session Object: not sent to the user</h3>
     <pre><%= session %></pre>
     <h3>Cookie Object: sent to the user</h3> 
-    <pre><%= cookies %></pre>
+    <% for(let cookie in cookies){ %>
+      <p><%= cookie %>: <%= cookies[cookie] %></p>
+    <% } %>
+    <!-- <pre><%= cookies %></pre> -->
   
+    <form id="delete-cookie-form" action="/deleteCookie?cookieName=trackingCookie" method="POST">
+      <button type="submit">Delete cookie</button>
+    </form>
+
+
   <% } else { %>
    <p>No cookies sent to you yet!</p>
   <% } %>
 
 
 </body>
+
+<script>
+  const form = document.getElementById('delete-cookie-form');
+  form.addEventListener('submit', function(event) {
+    console.log('Form submitted');
+  });
+  console.log()
+</script>
 
 <!-- thirdPartyCookie -->
 <!--   <h3>Third Party Cookie: sent from port 4000</h3>
