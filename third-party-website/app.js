@@ -1,12 +1,12 @@
 /* **************************************** */
 /*  server set up  */
 /* **************************************** */
-const port = 4000
+const port = 8080;
 const express = require('express');
 const app = express();
 const path = require('path');
 
-app.listen(port, '10.0.0.4', () => {
+app.listen(port, '0.0.0.0', () => {
     console.log(`third party website listening on port ${port}`)
   })
 app.set('views', path.join(__dirname, 'views'));
