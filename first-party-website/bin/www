@@ -26,7 +26,7 @@ const server = http.createServer(app);
  */
 
 server.listen(port, '172.20.53.134', () => {
-  console.dir('Server running on http://0.0.0.0:3001')
+  console.dir('Server running on http://172.20.53.134:3001')
 });
 server.on('error', onError);
 server.on('listening', onListening);
