@@ -6,7 +6,7 @@ router.get('/sendThirdPartyCookie', (req, res, next) => {
     data = 'third-party-cookie'
     console.log("cookie sent")
     // this sets the cookie on the first party website 
-    res.cookie('third-party-cookie', data, { sameSite: 'lax', domain: '172.20.53.134:3001', path: '/' });
+    res.cookie('third-party-cookie', data, { sameSite: 'lax', domain: '172.20.53.134', path: '/' });
     res.locals.cookieSent = true;
 
     res.render('index', { data: data });
