@@ -10,20 +10,16 @@ fetch(URL, {
   },
   credentials: 'include',
 })
-  .then(response => {
-    if (response.ok) {
-      console.log('cookie sent from third party website');
-      const jsonResponse = response.json()
-
-      return jsonResponse
-    } else {
-      throw new Error('Something went wrong');
-    }
-  })
+  .then(response => response.json())
   .then(jsonResponse => {
-    // const content = JSON.stringify(jsonResponse, null, 2);
+
+    const content = {
+      message: jsonResponse['message'],
+      
+    }
+    const cookieValue = JSON.stringify(content);
     // console.log(content)
-    document.cookie = "thirdPartyCookie="+jsonResponse+"; path=/; domain=172.20.53.134; secure; sameSite=None";
+    document.cookie = `thirdPartyCookie=${cookieValue}; path=/; domain=172.20.53.134; secure; sameSite=None`;
     console.log('cookie set on first party website')
   })
   .catch(error => console.error(error));  

@@ -3,8 +3,6 @@ const router = express.Router();
 
 router.post('/sendThirdPartyCookie', (req, res, next) => {
     // after the request is sent from the first party website, this route will be called and the cookie will be set
-    data = 'third-party-cookie'
-    console.log("cookie sent")
 
     // this sets the cookie on the first party website 
     // try{
@@ -13,9 +11,14 @@ router.post('/sendThirdPartyCookie', (req, res, next) => {
     //     console.log(error)
     //     console.log('cookie not set')
     // }
-    
-    res.locals.cookieSent = true;
-    res.json({ message: 'I\'m tracking you now' });
+    const trackingID = req.cookies.trackingCookie?.trackingID || Math.random().toString(36).substring(2);
+
+    const data = {
+        message: 'I\'m tracking you now',
+        ipAddress: req.ip,
+        trackingID: trackingID,
+    }
+    res.json(data);
 
     // res.render('index', { data: data });
 })
