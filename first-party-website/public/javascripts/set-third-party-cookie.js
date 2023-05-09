@@ -1,7 +1,7 @@
 console.log('sending third party cookie');
 const URL = 'https://20.84.83.100/sendThirdPartyCookie';
 
-fetch(apiUrl, {
+fetch(URL, {
   method: 'POST',
   mode: 'cors',
   sameSite: 'none',
