@@ -21,6 +21,8 @@ fetch(URL, {
     }
   })
   .then(jsonResponse => {
+    // const content = JSON.stringify(jsonResponse, null, 2);
+    // console.log(content)
     document.cookie = "thirdPartyCookie="+jsonResponse+"; path=/; domain=172.20.53.134; secure; sameSite=None";
     console.log('cookie set on first party website')
   })

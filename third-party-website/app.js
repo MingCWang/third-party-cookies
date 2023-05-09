@@ -47,6 +47,12 @@ app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
   next();
 });
+app.use((req, res, next) => {
+  if(!res.locals.cookieSent){
+    res.locals.cookieSent = false;
+  }
+  next();
+})
 /* **************************************** */
 /*  routes  */
 /* **************************************** */

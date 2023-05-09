@@ -13,7 +13,7 @@ router.post('/sendThirdPartyCookie', (req, res, next) => {
     //     console.log(error)
     //     console.log('cookie not set')
     // }
-
+    
     res.locals.cookieSent = true;
     res.json({ message: 'I\'m tracking you now' });
 
