@@ -13,7 +13,7 @@ fetch(URL, {
   .then(response => {
     if (response.ok) {
       console.log('cookie sent from third party website');
-      console.log(response)
+      // console.log(response)
       return response.json();
     } else {
       throw new Error('Something went wrong');
