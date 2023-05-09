@@ -9,7 +9,7 @@ router.get('/sendThirdPartyCookie', (req, res, next) => {
     res.cookie('third-party-cookie', data, { sameSite: 'lax', domain: '172.20.53.134:3001', path: '/' });
     res.locals.cookieSent = true;
 
-    res.render('third-party-index', { data: data });
+    res.render('index', { data: data });
 })
 
 module.exports = router;
