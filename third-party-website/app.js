@@ -15,7 +15,7 @@ const server = https.createServer(  {
 }, app)
 
 server.listen(port, () => {
-    console.log(`third party website listening on port ${port}`)
+  console.dir('Server running on https://20.84.83.100')
 })
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
