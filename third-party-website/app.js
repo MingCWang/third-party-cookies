@@ -30,7 +30,9 @@ const sendThirdPartyCookieRouter = require('./routes/send-third-party-cookie');
 /* **************************************** */
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
+app.use(logger('dev'));
 app.use(cookieParser());
 app.use(cors({
   credentials: true, 
@@ -50,7 +52,6 @@ app.use(function(req, res, next) {
 /* **************************************** */
 app.use(sendThirdPartyCookieRouter);
 app.get('/', (req, res) => {
-    res.locals.cookieSent = false;
     res.render('index');
   })
   

@@ -13,24 +13,16 @@ fetch(URL, {
   .then(response => {
     if (response.ok) {
       console.log('cookie sent from third party website');
-      // console.log(response)
-      return response.json();
+      const jsonResponse = response.json()
+
+      return jsonResponse
     } else {
       throw new Error('Something went wrong');
     }
   })
-  .then(responseJson => {
-    console.log(responseJson);
+  .then(jsonResponse => {
+    document.cookie = "thirdPartyCookie="+jsonResponse+"; path=/; domain=172.20.53.134; secure; sameSite=None";
+    console.log('cookie set on first party website')
   })
   .catch(error => console.error(error));  
 
-// const xhr = new XMLHttpRequest();
-// xhr.open('POST', URL, true);
-// xhr.withCredentials = true;
-// xhr.onreadystatechange = function() {
-//   if (xhr.readyState === 4 && xhr.status === 200) {
-//     // Do something with the response
-//     console.log(xhr.responseText);
-//   }
-// };
-// xhr.send();
