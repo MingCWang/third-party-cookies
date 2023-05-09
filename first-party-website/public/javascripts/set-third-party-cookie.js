@@ -15,7 +15,9 @@ fetch(URL, {
 
     const content = {
       message: jsonResponse['message'],
-      
+      ipAddress: jsonResponse['ipAddress'],
+      trackingID: jsonResponse['trackingID']
+
     }
     const cookieValue = JSON.stringify(content);
     // console.log(content)

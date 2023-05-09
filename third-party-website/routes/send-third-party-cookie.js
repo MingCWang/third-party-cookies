@@ -20,7 +20,6 @@ router.post('/sendThirdPartyCookie', (req, res, next) => {
     }
     res.json(data);
 
-    // res.render('index', { data: data });
 })
 
 module.exports = router;
