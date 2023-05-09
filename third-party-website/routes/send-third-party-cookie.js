@@ -6,14 +6,16 @@ router.post('/sendThirdPartyCookie', (req, res, next) => {
     data = 'third-party-cookie'
     console.log("cookie sent")
     // this sets the cookie on the first party website 
-    try{
-        res.cookie('third-party-cookie', data, { SameSite: 'None', domain: '172.20.53.134', path: '/', secure: true});
-    }catch(error){
-        console.log(error)
-        console.log('cookie not set')
-    }
+    // try{
+    //     res.cookie('third-party-cookie', data, { SameSite: 'None', domain: '172.20.53.134', path: '/', secure: true});
+    // }catch(error){
+    //     console.log(error)
+    //     console.log('cookie not set')
+    // }
+
+
     res.locals.cookieSent = true;
-    console.log('cookies', req.cookies)
+    res.json({ message: 'cookie contents, I\'m tracking you now' });
 
     res.render('index', { data: data });
 })

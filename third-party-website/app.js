@@ -10,8 +10,8 @@ const https = require('https');
 const fs = require('fs');
 
 const server = https.createServer(  {
-  key: fs.readFileSync('key.pem'),
-  cert: fs.readFileSync('cert.pem'),
+  key: fs.readFileSync('172.20.53.134.key'),
+  cert: fs.readFileSync('172.20.53.134.crt'),
 }, app)
 
 server.listen(port, () => {
