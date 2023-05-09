@@ -1,22 +1,23 @@
 /* **************************************** */
 /*  server set up  */
 /* **************************************** */
-const port = 80;
+const port = 443;
 const express = require('express');
 const app = express();
 const path = require('path');
 // Import builtin NodeJS modules to instantiate the service
-const https = require("https");
-const fs = require("fs");
+const https = require('https');
+const fs = require('fs');
 
 const server = https.createServer(  {
-  key: fs.readFileSync("key.pem"),
-  cert: fs.readFileSync("cert.pem"),
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem'),
 }, app)
 
 server.listen(port, () => {
   console.dir('Server running on https://20.84.83.100')
 })
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, '/public')));
