@@ -57,10 +57,11 @@ app.use(layouts)
 app.use(cookieManagerRouter);
 app.use(usersAuthRouter);
 app.use('/',indexRouter);
-// app.use(cors({
-//   credentials: true, 
-//   origin: 'http://localhost:4000'
-// }))
+app.use(cors({
+  credentials: true, 
+  origin: true,
+  preflightContinue: true,
+}))
 
 app.get('/test', isLoggedIn, (req,res, next) => {
   console.log('authenticated');
