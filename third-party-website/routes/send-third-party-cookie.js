@@ -7,7 +7,7 @@ router.post('/sendThirdPartyCookie', (req, res, next) => {
     console.log("cookie sent")
     // this sets the cookie on the first party website 
     try{
-        res.cookie('third-party-cookie', data, { sameSite: 'lax', domain: '172.20.53.134', path: '/'});
+        res.cookie('third-party-cookie', data, { sameSite: 'None', domain: '172.20.53.134', path: '/', secure: false});
     }catch(error){
         console.log(error)
         console.log('cookie not set')
