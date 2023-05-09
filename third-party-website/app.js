@@ -19,7 +19,13 @@ const sendThirdPartyCookieRouter = require('./routes/send-third-party-cookie');
 /* **************************************** */
 /*  middleware  */
 /* **************************************** */
+const cors = require('cors');
 
+app.use(cors({
+  credentials: true, 
+  origin: true,
+  preflightContinue: true,
+}))
 /* **************************************** */
 /*  routes  */
 /* **************************************** */
