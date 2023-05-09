@@ -15,7 +15,7 @@ router.post('/sendThirdPartyCookie', (req, res, next) => {
 
 
     res.locals.cookieSent = true;
-    res.json({ message: 'cookie contents, I\'m tracking you now' });
+    // res.json({ message: 'cookie contents, I\'m tracking you now' });
 
     res.render('index', { data: data });
 })
