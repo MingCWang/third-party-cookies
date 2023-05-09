@@ -37,6 +37,14 @@ app.use(cors({
   origin: true,
   preflightContinue: true,
 }))
+// indicate to the browser that it's safe to allow cross-origin requests to be made to this server.
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Credentials', true);
+  res.header('Access-Control-Allow-Origin', req.headers.origin);
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+  next();
+});
 /* **************************************** */
 /*  routes  */
 /* **************************************** */

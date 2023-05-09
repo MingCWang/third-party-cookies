@@ -1,5 +1,5 @@
 console.log('sending third party cookie');
-const apiUrl = 'http://20.84.83.100/sendThirdPartyCookie';
+const apiUrl = 'https://20.84.83.100/sendThirdPartyCookie';
 
 fetch(apiUrl, {
   method: 'POST',

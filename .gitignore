@@ -2,3 +2,4 @@ node_modules
 package-lock*
 *.sh
 csr.pem
+*.DS_Store
