@@ -5,7 +5,13 @@
  */
 const app = require('../app');
 const debug = require('debug')('todo-app:server');
-const http = require('http');
+
+
+// Import builtin NodeJS modules to instantiate the service
+const https = require("https");
+const fs = require("fs");
+
+
 
 /**
  * Get port from environment and store in Express.
@@ -16,17 +22,21 @@ const port = normalizePort(process.env.PORT || '3001');
 // app.set('port', port);
 
 /**
- * Create HTTP server.
+ * Create HTTPS server.
  */
-
-const server = http.createServer(app);
+// Provide the private and public key to the server by reading each
+// file's content with the readFileSync() method.
+const server = https.createServer(  {
+  key: fs.readFileSync("key.pem"),
+  cert: fs.readFileSync("cert.pem"),
+}, app)
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
 server.listen(port, '172.20.53.134', () => {
-  console.dir('Server running on http://172.20.53.134:3001')
+  console.dir('Server running on https://172.20.53.134:3001')
 });
 server.on('error', onError);
 server.on('listening', onListening);

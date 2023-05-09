@@ -5,10 +5,18 @@ const port = 80;
 const express = require('express');
 const app = express();
 const path = require('path');
+// Import builtin NodeJS modules to instantiate the service
+const https = require("https");
+const fs = require("fs");
 
-app.listen(port, () => {
+const server = https.createServer(  {
+  key: fs.readFileSync("key.pem"),
+  cert: fs.readFileSync("cert.pem"),
+}, app)
+
+server.listen(port, () => {
     console.log(`third party website listening on port ${port}`)
-  })
+})
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, '/public')));
