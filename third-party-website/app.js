@@ -1,7 +1,8 @@
 /* **************************************** */
 /*  server set up  */
 /* **************************************** */
-const port = 443;
+// const port = 443;
+const port = 4000;
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -15,7 +16,8 @@ const server = https.createServer(  {
 }, app)
 
 server.listen(port, () => {
-  console.dir('Server running on https://20.84.83.100')
+  // console.dir('Server running on https://20.84.83.100')
+  console.dir('Server running on https://localhost:4000')
 })
 
 app.set('views', path.join(__dirname, 'views'));
@@ -58,6 +60,16 @@ app.use((req, res, next) => {
 /* **************************************** */
 app.use(sendThirdPartyCookieRouter);
 app.get('/', (req, res) => {
+
+    // for(let cookie in req.cookies){
+    //   // console.log(req.cookies[cookie])
+    //   if(cookie == 'third-party-cookie'){
+    //     const jsonObj = JSON.parse(req.cookies[cookie])
+    //     cookieContent = JSON.stringify(jsonObj, null, 2);
+    //   }else{
+
+    //   }
+    // }
     res.render('index');
-  })
+})
   

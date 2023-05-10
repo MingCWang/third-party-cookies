@@ -9,10 +9,18 @@
 </head>
 <body>
     <h1>third party website</h1>
-    <% if (cookieSent) { %>
-        <p>cookie sent to first party website</p>
-        <p>content: <%= data %></p>
-    <% } %>
+    <div class="container">
+        <form method="get" action="https://localhost:4000/sendThirdPartyCookie">
+            <input type="submit" value="mr.robot">
+        </form>
+    </div>
+  
 
 </body>
 </html>
+
+
+<% if (cookieSent = false) { %>
+    <p>cookie sent to first party website</p>
+    <p>content: <%= data %></p>
+<% } %>

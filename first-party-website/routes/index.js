@@ -14,12 +14,12 @@ router.get('/', (req, res, next) => {
   for(let cookie in req.cookies){
     console.log(req.cookies[cookie])
 
-    if(cookie == 'thirdPartyCookie'){
-      const jsonObj = JSON.parse(req.cookies[cookie])
-      cookieContent = JSON.stringify(jsonObj, null, 2);
-    }else{
+    // if(cookie == 'thirdPartyCookie'){
+    //   const jsonObj = JSON.parse(req.cookies[cookie])
+    //   cookieContent = JSON.stringify(jsonObj, null, 2);
+    // }else{
       cookieContent = JSON.stringify(req.cookies[cookie], null, 2);
-    }
+    // }
     cookies[cookie] = cookieContent;
   }
 

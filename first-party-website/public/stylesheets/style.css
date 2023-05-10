@@ -6,3 +6,8 @@ body {
 a {
   color: #00B7FF;
 }
+
+#ad{
+  width: 300px;
+  height: auto;
+}
