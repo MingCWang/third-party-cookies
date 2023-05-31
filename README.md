@@ -6,8 +6,8 @@ This project explores the concept of third-party cookies and their implications 
 ## Project Description
 As Google plans to phase out third-party cookies, it is essential to explore their functionality and alternatives. The project involves creating two websites, one hosted on a local IP address and the other on a Kali virtual machine. Initially, third-party cookies were implemented using the Express CORS middleware to allow cross-origin requests. However, certain limitations were encountered:
 
-1. HTTPS Requirement: To prepare for the phase-out of third-party cookies, Google now requires third-party cookies to be set only through HTTPS servers. This necessitates hosting the server on an HTTPS server.
-2. SSL Certificate Challenges: Implementing HTTPS servers requires SSL certificates. Despite attempts to use self-signed SSL certificates, Chrome rejected the certificates, preventing successful implementation.
+1. HTTPS Requirement:  When setting cookies through HTTP server, the Set-Cookie header is present, as shown, but it is not being set to this browser because of violating SOP (Same-Origin Policy) – the policy that prevents cookies from being set on a different domain. To prepare for the phase-out of third-party cookies, Google now requires third-party cookies to be set only through HTTPS servers. This necessitates hosting the server on an HTTPS server. ![http header image](./images/http-error-image.png)
+2. SSL Certificate Challenges: Implementing HTTPS servers requires SSL certificates. Despite attempts to use self-signed SSL certificates, Chrome rejected the certificates, preventing successful implementation. ![ssl error image](./images/ssl-error-image.png)
 
 ## Solution
 To replicate the behavior of third-party cookies, the project shifted focus to implementing same root domain cookies. The process involves:
@@ -18,4 +18,4 @@ To replicate the behavior of third-party cookies, the project shifted focus to i
 
 Please note that this project provides insights into the implementation of third-party cookies and their alternatives. It highlights the challenges posed by recent changes in internet policies and provides an opportunity to explore related concepts and technologies.
 
-For detailed implementation and code samples, refer to the project's repository and documentation on GitHub.
+For detailed implementation and code samples, refer to the project's repository.
