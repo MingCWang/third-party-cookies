@@ -13,13 +13,7 @@ router.get('/', (req, res, next) => {
   // format the cookies that are sent to the user 
   for(let cookie in req.cookies){
     console.log(req.cookies[cookie])
-
-    // if(cookie == 'thirdPartyCookie'){
-    //   const jsonObj = JSON.parse(req.cookies[cookie])
-    //   cookieContent = JSON.stringify(jsonObj, null, 2);
-    // }else{
-      cookieContent = JSON.stringify(req.cookies[cookie], null, 2);
-    // }
+    cookieContent = JSON.stringify(req.cookies[cookie], null, 2);
     cookies[cookie] = cookieContent;
   }
 

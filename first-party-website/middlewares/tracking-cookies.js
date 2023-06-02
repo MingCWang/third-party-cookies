@@ -15,33 +15,15 @@ const setTrackingInfoInCookie = async (req, res) => {
       trackingID,
       ipAddress,
       lastVisitURL,
-      timeStamp,
-    //   sessionTime: null
+      timeStamp
     }
-
-    // this only tracks how much time user spend on each page
-    // if (visit) {
-    //     const startTime = moment(req.session.created_At, 'MMMM Do YYYY, h:mm:ss a');
-    //     console.log(startTime)
-    //     // const startTime = moment(startTimeString);
-    //     req.session.tracked = true;
-    //     res.on('finish', async () => {
-    //         const endTime = moment();
-    //         data.sessionTime =  moment.duration(endTime.diff(startTime)).humanize()// calculate session length
-    //         // console.log(`Session length: ${sessionTime}ms`); // log session length to console
-    //         const tracking = new Tracking(data)
-    //         await tracking.save()
-    //     });
-    // }else{
-        // save tracking info in database
-        const tracking = new Tracking(data)
-            
-        return tracking.save()
-        .then((data) => {
-            res.cookie('trackingCookie', data);
-        })
-    // }
-  }
+    const tracking = new Tracking(data)
+        
+    return tracking.save()
+    .then((data) => {
+        res.cookie('trackingCookie', data);
+    })
+}
 
 
 module.exports = setTrackingInfoInCookie

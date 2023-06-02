@@ -6,8 +6,7 @@ var TrackingSchema = Schema( {
     trackingID: String,
     ipAddress: String,
     lastVisitURL: String,
-    timeStamp: String,
-    sessionTime: String
+    timeStamp: String
 } );
 
 module.exports = mongoose.model( 'Tracking', TrackingSchema );
